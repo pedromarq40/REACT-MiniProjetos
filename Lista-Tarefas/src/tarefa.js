@@ -1,4 +1,4 @@
-export default class{
+export default class Tarefa{
 
     constructor(i, tarefa){
         this.concluida = false

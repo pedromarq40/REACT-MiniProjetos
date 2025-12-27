@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import './tarefa.js'
+import Tarefa from './tarefa.js'
 
 /**
  * Marcar Tarefas com um ~ ao inves de sumir
@@ -23,8 +23,10 @@ function App() {
       return
     }
 
+    let nova_tarefa = new Tarefa(lista.length + 1, tarefa)
+
     let nova_lista = lista.slice()
-    nova_lista.push(tarefa)
+    nova_lista.push(nova_tarefa)
     console.log(nova_lista)
 
     setLista(nova_lista)
@@ -54,8 +56,8 @@ function App() {
   const lista_de_tarefas = lista.map( (item, index) => {
 
     return (
-      <li key={item}>
-        <p>{item}</p>
+      <li key={item.id}>
+        <p>{item.tarefa}</p>
         <button onClick={ () => remover(index)}>Remover Tarefa</button>
         <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
       </li>
