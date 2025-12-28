@@ -1,4 +1,4 @@
-export default class Tarefa{
+class Tarefa{
 
     constructor(i, tarefa){
         this.concluida = false
@@ -7,3 +7,5 @@ export default class Tarefa{
         this.prioridade = 1
     }
 }
+
+export default Tarefa
