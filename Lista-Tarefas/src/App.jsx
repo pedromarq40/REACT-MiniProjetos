@@ -53,13 +53,31 @@ function App() {
 
   }
 
+  function marcar(item, index){
+
+    let nova_lista = lista.slice()
+    let novo_item = item
+
+    novo_item.concluida = true
+    nova_lista[index] = novo_item
+    console.log(nova_lista)
+
+    setLista(nova_lista)
+
+  }
+
   const lista_de_tarefas = lista.map( (item, index) => {
+
+    let estilo = {
+      color: item.concluida ? 'green' : 'red'
+    }
 
     return (
       <li key={item.id}>
-        <p>{item.tarefa}</p>
+        <p style={estilo}>{item.tarefa}</p>
         <button onClick={ () => remover(index)}>Remover Tarefa</button>
         <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
+        <button onClick={ () => marcar(item, index)}>Marcar Tarefa Como Concluida</button>
       </li>
     )
 
