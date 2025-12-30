@@ -32,11 +32,3 @@ Durante o desenvolvimento destes exercícios, pratiquei os seguintes conceitos:
 * **Lógica de Jogo:** Algoritmos simples para determinar condições de vitória (no Jogo da Velha).
 
 ---
-
-## 💻 Como rodar localmente
-
-Se você quiser clonar e rodar este repositório na sua máquina:
-
-1. **Clone o repositório:**
-   ```bash
-   git clone [https://github.com/pedromarq40/REACT---Exerc-cios.git](https://github.com/pedromarq40/REACT---Exerc-cios.git)
