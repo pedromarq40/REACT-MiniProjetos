@@ -3,7 +3,6 @@ import './App.css'
 import Tarefa from './tarefa.js'
 
 /**
- * Contador de Tarefas a serem feitas
  * Editar Tarefa
  * Mostrar Todas/Pendentes/Concluidas
  * Organização Automática das Tarefas
@@ -66,6 +65,20 @@ function App() {
 
   }
 
+  function editar_tarefa(item, index){
+
+    let nova_lista = lista.slice()
+    let novo_item = item 
+
+    let nova_tarefa = prompt('Diga a sua nova tarefa: ')
+
+    novo_item.tarefa = nova_tarefa
+    nova_lista[index] = novo_item
+    console.log(nova_lista)
+
+    setLista(nova_lista)
+  }
+
   function contar_tarefas(){
 
     for( let tarefa of lista){
@@ -90,6 +103,7 @@ function App() {
         <button onClick={ () => remover(index)}>Remover Tarefa</button>
         <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
         <button onClick={ () => marcar(item, index)}>Marcar Tarefa Como Concluida</button>
+        <button onClick={ () => editar_tarefa(item, index)}>Editar Tarefa</button>
       </li>
     )
 
