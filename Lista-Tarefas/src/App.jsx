@@ -3,7 +3,6 @@ import './App.css'
 import Tarefa from './tarefa.js'
 
 /**
- * Mostrar Todas/Pendentes/Concluidas
  * Organização Automática das Tarefas
  */
 
@@ -26,7 +25,6 @@ function App() {
 
     let nova_lista = lista.slice()
     nova_lista.push(nova_tarefa)
-    console.log(nova_lista)
 
     setLista(nova_lista)
   }
@@ -35,7 +33,6 @@ function App() {
     
     let nova_lista = lista.slice()
     nova_lista.splice(index, 1)
-    console.log(nova_lista)
 
     setLista(nova_lista)
 
@@ -46,7 +43,6 @@ function App() {
     let nova_lista = lista.slice()
     nova_lista.splice(index, 1)
     nova_lista.unshift(item)
-    console.log(nova_lista)
 
     setLista(nova_lista)
 
@@ -59,7 +55,6 @@ function App() {
 
     novo_item.concluida = true
     nova_lista[index] = novo_item
-    console.log(nova_lista)
 
     setLista(nova_lista)
 
@@ -74,7 +69,6 @@ function App() {
 
     novo_item.tarefa = nova_tarefa
     nova_lista[index] = novo_item
-    console.log(nova_lista)
 
     setLista(nova_lista)
   }
@@ -141,7 +135,7 @@ function App() {
     return lista_de_tarefas
 
   }
-  
+
   function contar_tarefas(){
 
     for( let tarefa of lista){
@@ -149,6 +143,19 @@ function App() {
         Tarefas_a_serem_feitas += 1
       }
     }
+  }
+
+  function organizar_tarefas(){
+
+    let nova_lista = lista.slice()
+
+    let concluidos = nova_lista.filter( item => item.concluida)
+    let pendentes = nova_lista.filter( item => !item.concluida)
+
+    nova_lista = concluidos.concat(pendentes)
+
+    setLista(nova_lista)
+    
   }
 
   contar_tarefas()
@@ -160,7 +167,7 @@ function App() {
     break;
     default:
     lista_de_tarefas = mostrar_com_condicao(statusLista)
-
+    break;
   }
 
 
@@ -182,7 +189,7 @@ function App() {
           <button type='submit'>Submeter</button>
         </form>
 
-        <button onClick={ () => console.clear() }>Limpar Console</button>
+        <button onClick={ () => organizar_tarefas()}>Organizar Tarefas</button>
         <button onClick={ () => setStatusLista(1)}>Mostrar Todas as Tarefas</button>
         <button onClick={ () => setStatusLista(2)}>Mostrar Tarefas Concluidas</button>
         <button onClick={ () => setStatusLista(3)}>Mostrar Tarefas Pendentes</button>
