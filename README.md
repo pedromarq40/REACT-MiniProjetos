@@ -1,8 +1,8 @@
-# ⚛️ React - Exercícios Práticos
+#  React - Exercícios Práticos
 
-Bem-vindo ao meu repositório de estudos em **React**. Aqui reúno projetos práticos desenvolvidos para fixar conceitos fundamentais da biblioteca, como gerenciamento de estado (useState), efeitos colaterais (useEffect), componentes funcionais e renderização condicional.
+Bem-vindo ao meu repositório de estudos em **React**. Aqui reúno projetos práticos desenvolvidos para fixar conceitos fundamentais.
 
-## 🚀 Projetos Disponíveis
+##  Projetos Disponíveis
 
 Abaixo você encontra a lista de projetos desenvolvidos. Clique no link de "Demonstração" para testar a aplicação no seu navegador.
 
