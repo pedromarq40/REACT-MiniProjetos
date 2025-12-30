@@ -11,7 +11,7 @@ function App() {
   const [lista, setLista] = useState(Array())
   const [tarefa, setTarefa] = useState('')
   const [statusLista, setStatusLista] = useState(1)
-  let Tarefas_a_serem_feitas = 0
+  let Tarefas_a_serem_feitas = lista.filter( tarefa => !tarefa.concluida).length
 
   function submeter(event){
 
@@ -21,7 +21,7 @@ function App() {
       return
     }
 
-    let nova_tarefa = new Tarefa(lista.length + 1, tarefa)
+    let nova_tarefa = new Tarefa(Date.now(), tarefa)
 
     let nova_lista = lista.slice()
     nova_lista.push(nova_tarefa)
@@ -51,9 +51,7 @@ function App() {
   function marcar(item, index){
 
     let nova_lista = lista.slice()
-    let novo_item = item
-
-    novo_item.concluida = true
+    let novo_item = {... item, 'concluida' : true}
     nova_lista[index] = novo_item
 
     setLista(nova_lista)
@@ -136,15 +134,6 @@ function App() {
 
   }
 
-  function contar_tarefas(){
-
-    for( let tarefa of lista){
-      if ( !tarefa.concluida ){
-        Tarefas_a_serem_feitas += 1
-      }
-    }
-  }
-
   function organizar_tarefas(){
 
     let nova_lista = lista.slice()
@@ -157,8 +146,6 @@ function App() {
     setLista(nova_lista)
     
   }
-
-  contar_tarefas()
   
   let lista_de_tarefas
 
