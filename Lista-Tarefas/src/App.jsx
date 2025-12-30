@@ -79,17 +79,6 @@ function App() {
     setLista(nova_lista)
   }
 
-  function contar_tarefas(){
-
-    for( let tarefa of lista){
-      if ( !tarefa.concluida ){
-        Tarefas_a_serem_feitas += 1
-      }
-    }
-  }
-
-  contar_tarefas()
-
   function mostrar_todas_tarefas(){
 
     const lista_de_tarefas = lista.map( (item, index) => {
@@ -113,11 +102,22 @@ function App() {
   return lista_de_tarefas
   }
 
-  function mostrar_concluidas(){
+  function mostrar_com_condicao(statusLista){
+
+    let condição 
+
+    switch(statusLista){
+      case 2:
+      condição = true
+      break
+      case 3:
+      condição = false
+      break
+    }
 
     const lista_de_tarefas = lista.map( (item, index) => {
 
-      if(item.concluida){
+      if(item.concluida === condição){
 
         let estilo = {
           color: item.concluida ? 'green' : 'red'
@@ -139,45 +139,28 @@ function App() {
     })
 
     return lista_de_tarefas
+
   }
+  
+  function contar_tarefas(){
 
-  function mostrar_pendentes(){
-
-    const lista_de_tarefas = lista.map( (item, index) => {
-
-      if(!item.concluida){
-
-        let estilo = {
-          color: item.concluida ? 'green' : 'red'
-        }
-
-        return (
-          <li key={item.id}>
-            <p style={estilo}>{item.tarefa}</p>
-            <button onClick={ () => remover(index)}>Remover Tarefa</button>
-            <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
-            <button onClick={ () => marcar(item, index)}>Marcar Tarefa Como Concluida</button>
-            <button onClick={ () => editar_tarefa(item, index)}>Editar Tarefa</button>
-          </li>
-        )
-
-      }else{
-        return null
+    for( let tarefa of lista){
+      if ( !tarefa.concluida ){
+        Tarefas_a_serem_feitas += 1
       }
-    })
-
-    return lista_de_tarefas
+    }
   }
+
+  contar_tarefas()
   
   let lista_de_tarefas
 
   switch(statusLista){
     case 1: lista_de_tarefas = mostrar_todas_tarefas()
     break;
-    case 2: lista_de_tarefas = mostrar_concluidas()
-    break;
-    case 3: lista_de_tarefas = mostrar_pendentes()
-    break;
+    default:
+    lista_de_tarefas = mostrar_com_condicao(statusLista)
+
   }
 
 
