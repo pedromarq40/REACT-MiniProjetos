@@ -1,11 +1,9 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './App.css'
+import Tarefa from './Tarefa.jsx'
+import Forms from './Forms.jsx'
 
-
-/**
- * Organização Automática das Tarefas
- */
 
 function App() {
 
@@ -62,7 +60,7 @@ function App() {
   function marcar(id){
 
     setLista( lista.map( (item) =>  
-     item.id === id ? { ... item, 'concluida' : true} : item
+     item.id === id ? { ... item, 'concluida' : !item.concluida} : item
     ))
   }
 
@@ -92,15 +90,17 @@ function App() {
         }
 
       return (
-          <li key={item.id}>
-            <p style={estilo}>{item.tarefa}</p>
-            <button onClick={ () => remover(item.id)}>Remover Tarefa</button>
-            <button onClick={ () => priorizar(item.id)}>Priorizar Tarefa</button>
-            <button onClick={ () => marcar(item.id)}>Marcar Tarefa Como Concluida</button>
-            <button onClick={ () => editar_tarefa(item.id)}>Editar Tarefa</button>
-          </li>
+          <Tarefa
+          key={item.id}
+          item={item}
+          remover={remover}
+          priorizar={priorizar}
+          marcar={marcar}
+          editar_tarefa={editar_tarefa}
+          statusLista={statusLista}
+          estilo={estilo}
+          />
         )
-
     })
 
     return lista_final
@@ -125,25 +125,15 @@ function App() {
   return (
     <>
       <div className='inputs'>
-
-        <p>Quantidade de tarefas a serem feitas: {Tarefas_a_serem_feitas}</p>
-        <br />
-
-        <form onSubmit={submeter}>
-          <label htmlFor="input">Insira sua tarefa: </label>
-          <input 
-          type="text" 
-          id='input' 
-          value={tarefa} //O valor do input sempre sera o de value
-          onChange={(e) => setTarefa(e.target.value)} // função que atualiza tarefa enquanto atualiza/digita
-           />
-          <button type='submit'>Submeter</button>
-        </form>
-
-        <button onClick={ () => organizar_tarefas()}>Organizar Tarefas</button>
-        <button onClick={ () => setStatusLista(1)}>Mostrar Todas as Tarefas</button>
-        <button onClick={ () => setStatusLista(2)}>Mostrar Tarefas Concluidas</button>
-        <button onClick={ () => setStatusLista(3)}>Mostrar Tarefas Pendentes</button>
+        <Forms
+        key={'forms'}
+        submeter={submeter}
+        setTarefa={setTarefa}
+        organizar_tarefas={organizar_tarefas}
+        setStatusLista={setStatusLista}
+        Tarefas_a_serem_feitas={Tarefas_a_serem_feitas}
+        tarefa={tarefa}
+        />
       </div>
       
       <div className='Lista'>
