@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
-/* --- RESET & BODY --- */
 * {
   box-sizing: border-box;
 }
@@ -18,7 +17,6 @@ body {
 
 #root {
   width: 100%;
-  /* AUMENTADO: Mais espaço lateral para acomodar botões grandes */
   max-width: 1200px; 
   padding: 40px 20px;
   display: flex;
@@ -26,10 +24,9 @@ body {
   align-items: center;
 }
 
-/* --- SEÇÃO DE INPUTS --- */
 .inputs {
   width: 100%;
-  max-width: 800px; /* Inputs continuam centralizados para não ficarem "esticados" demais */
+  max-width: 800px; 
   background-color: white;
   padding: 30px;
   border-radius: 12px;
@@ -44,7 +41,7 @@ body {
 
 .inputs p {
   width: 100%;
-  font-size: 1.1rem; /* Texto um pouco maior */
+  font-size: 1.1rem; 
   font-weight: 600;
   color: #555;
   text-align: center;
@@ -66,11 +63,11 @@ body {
 }
 
 .inputs input[type="text"] {
-  padding: 15px; /* Input maior */
+  padding: 15px; 
   border: 2px solid #e0e0e0;
   border-radius: 8px;
   font-family: 'Poppins', sans-serif;
-  font-size: 1.1rem; /* Texto digitado maior */
+  font-size: 1.1rem; 
   outline: none;
 }
 
@@ -82,7 +79,7 @@ form button[type="submit"] {
   background-color: #3498db;
   color: white;
   font-weight: 600;
-  font-size: 1.1rem; /* Botão Submeter maior */
+  font-size: 1.1rem; 
   padding: 15px;
   border-radius: 6px;
   border: none;
@@ -92,16 +89,16 @@ form button[type="submit"] {
 }
 form button[type="submit"]:hover { background-color: #2980b9; }
 
-/* Botões de Filtro Superiores */
+
 .inputs > button {
   flex: 1;
-  padding: 15px; /* Mais área de clique */
+  padding: 15px; 
   border: none;
   border-radius: 6px;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  font-size: 0.95rem; /* Fonte maior */
+  font-size: 0.95rem; 
   background-color: #e9ecef;
   color: #495057;
   transition: all 0.2s;
@@ -110,7 +107,7 @@ form button[type="submit"]:hover { background-color: #2980b9; }
 .inputs > button:hover { background-color: #dee2e6; }
 
 
-/* --- LISTA DE TAREFAS --- */
+
 .Lista {
   width: 100%;
 }
@@ -120,7 +117,6 @@ form button[type="submit"]:hover { background-color: #2980b9; }
   padding: 0;
   margin: 0;
   display: grid;
-  /* Grid de 2 colunas */
   grid-template-columns: 1fr 1fr; 
   gap: 30px; /* Mais espaço entre os cartões */
   align-items: start;

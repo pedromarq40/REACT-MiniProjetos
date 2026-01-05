@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
 import './App.css'
-import Tarefa from './tarefa.js'
+
 
 /**
  * Organização Automática das Tarefas
@@ -27,114 +27,83 @@ function App() {
       return
     }
 
-    let nova_tarefa = new Tarefa(Date.now(), tarefa)
+    let nova_tarefa = {
+      'concluida' : false,
+      'id' : Date.now(),
+      'tarefa' : tarefa
+    }
 
-    let nova_lista = lista.slice()
-    nova_lista.push(nova_tarefa)
-
-    setLista(nova_lista)
+    setLista([ ... lista, nova_tarefa])
   }
 
-  function remover(index){
+  function remover(id){
     
-    let nova_lista = lista.slice()
-    nova_lista.splice(index, 1)
-
-    setLista(nova_lista)
+    setLista( lista.filter(item => item.id !== id))
 
   }
 
-  function priorizar(item, index){
+  function priorizar(id){
     
-    let nova_lista = lista.slice()
-    nova_lista.splice(index, 1)
-    nova_lista.unshift(item)
+    let nova_lista = [...lista]
+    
+    // 1. Descobrimos qual é o index REAL desse item na lista completa
+    const indexReal = nova_lista.findIndex(item => item.id === id)
 
-    setLista(nova_lista)
+    if(indexReal !== -1){
+      const itemParaMover = nova_lista[indexReal]
 
+      nova_lista.splice(indexReal, 1)
+      nova_lista.unshift(itemParaMover)
+
+      setLista(nova_lista)
+    }
   }
 
-  function marcar(item, index){
+  function marcar(id){
 
-    let nova_lista = lista.slice()
-    let novo_item = {... item, 'concluida' : true}
-    nova_lista[index] = novo_item
-
-    setLista(nova_lista)
-
+    setLista( lista.map( (item) =>  
+     item.id === id ? { ... item, 'concluida' : true} : item
+    ))
   }
 
-  function editar_tarefa(item, index){
+  function editar_tarefa(id){
 
-    let nova_lista = lista.slice()
     let nova_tarefa = prompt('Diga a sua nova tarefa: ')
 
-    let novo_item = { ...item, 'tarefa' : nova_tarefa}
-    nova_lista[index] = novo_item
-
-    setLista(nova_lista)
+    setLista(lista.map( (item) =>
+     item.id === id ? {... item, 'tarefa' : nova_tarefa} : item
+    ))
   }
 
-  function mostrar_todas_tarefas(){
+  function mostrar_tarefas() {
 
-    const lista_de_tarefas = lista.map( (item, index) => {
+    let lista_filtrada = lista.filter( ( tarefa ) => {
 
-      let estilo = {
-        color: item.concluida ? 'green' : 'red'
-      }
-
-      return (
-        <li key={item.id}>
-          <p style={estilo}>{item.tarefa}</p>
-          <button onClick={ () => remover(index)}>Remover Tarefa</button>
-          <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
-          <button onClick={ () => marcar(item, index)}>Marcar Tarefa Como Concluida</button>
-          <button onClick={ () => editar_tarefa(item, index)}>Editar Tarefa</button>
-        </li>
-      )
+      if ( statusLista === 2 ) return ( tarefa.concluida === true )
+      if ( statusLista === 3 ) return ( tarefa.concluida === false )
+      return true
 
     })
 
-  return lista_de_tarefas
-  }
-
-  function mostrar_com_condicao(statusLista){
-
-    let condição 
-
-    switch(statusLista){
-      case 2:
-      condição = true
-      break
-      case 3:
-      condição = false
-      break
-    }
-
-    const lista_de_tarefas = lista.map( (item, index) => {
-
-      if(item.concluida === condição){
+    let lista_final = lista_filtrada.map( (item, index) => {
 
         let estilo = {
           color: item.concluida ? 'green' : 'red'
         }
 
-        return (
+      return (
           <li key={item.id}>
             <p style={estilo}>{item.tarefa}</p>
-            <button onClick={ () => remover(index)}>Remover Tarefa</button>
-            <button onClick={ () => priorizar(item, index)}>Priorizar Tarefa</button>
-            <button onClick={ () => marcar(item, index)}>Marcar Tarefa Como Concluida</button>
-            <button onClick={ () => editar_tarefa(item, index)}>Editar Tarefa</button>
+            <button onClick={ () => remover(item.id)}>Remover Tarefa</button>
+            <button onClick={ () => priorizar(item.id)}>Priorizar Tarefa</button>
+            <button onClick={ () => marcar(item.id)}>Marcar Tarefa Como Concluida</button>
+            <button onClick={ () => editar_tarefa(item.id)}>Editar Tarefa</button>
           </li>
         )
 
-      }else{
-        return null
-      }
     })
 
-    return lista_de_tarefas
+    return lista_final
 
   }
 
@@ -151,17 +120,7 @@ function App() {
     
   }
   
-  let lista_de_tarefas
-
-  switch(statusLista){
-    case 1: lista_de_tarefas = mostrar_todas_tarefas()
-    break;
-    default:
-    lista_de_tarefas = mostrar_com_condicao(statusLista)
-    break;
-  }
-
-  localStorage.setItem('lista', JSON.stringify(lista))
+  let lista_de_tarefas = mostrar_tarefas()
 
   return (
     <>
