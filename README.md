@@ -8,8 +8,8 @@ Abaixo você encontra a lista de projetos desenvolvidos. Clique no link de "Demo
 
 | Projeto | Descrição | Status | Links |
 | :--- | :--- | :---: | :---: |
-| **📝 Lista de Tarefas** | Aplicação clássica de To-Do List. Permite adicionar e remover tarefas. Foco em manipulação de arrays no estado e listas. | ✅ Concluído | [**Acessar Demo**](https://pedromarq40.github.io/REACT---Exerc-cios/Lista-Tarefas/dist/) |
-| **❌⭕ Jogo da Velha** | O clássico Tic-Tac-Toe. Implementa lógica de turnos, verificação de vencedor e reinício de jogo. | ✅ Concluído | [**Acessar Demo**](https://pedromarq40.github.io/REACT---Exerc-cios/Jogo-Da-Velha/dist/) |
+| **📝 Lista de Tarefas** | Aplicação clássica de To-Do List. Permite adicionar e remover tarefas. Foco em manipulação de arrays no estado e listas. | ✅ Concluído | [**Acessar Demo**](https://pedromarq40.github.io/REACT-MiniProjetos/Lista-Tarefas/dist/) |
+| **❌⭕ Jogo da Velha** | O clássico Tic-Tac-Toe. Implementa lógica de turnos, verificação de vencedor e reinício de jogo. | ✅ Concluído | [**Acessar Demo**](https://pedromarq40.github.io/REACT-MiniProjetos/Jogo-Da-Velha/dist/) |
 
 ---
 
